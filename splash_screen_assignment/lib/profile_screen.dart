@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.orange.shade50,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: const Text('Profile'),
+        title: const Text('Welcome to My Profile'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -50,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 60,
-                backgroundImage: AssetImage('assets/images/my_pic.jpg'),
+                backgroundImage: AssetImage('images/my_pic.jpg'),
               ),
 
               const SizedBox(height: 15),
@@ -115,18 +115,9 @@ class ProfileScreen extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    foodCard(
-                      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38',
-                      'Pizza',
-                    ),
-                    foodCard(
-                      'https://images.unsplash.com/photo-1550547660-d9450f859349',
-                      'Burger',
-                    ),
-                    foodCard(
-                      'https://images.unsplash.com/photo-1579871494447-9811cf80d66c',
-                      'Cake',
-                    ),
+                    foodCard('assets/images/pizza.jpg', 'Pizza'),
+                    foodCard('assets/images/burger.jpg', 'Burger'),
+                    foodCard('assets/images/sushi.jpg', 'Sushi'),
                   ],
                 ),
               ),

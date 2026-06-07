@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Icon(Icons.restaurant, size: 120, color: Colors.deepOrange),
             const SizedBox(height: 20),
             const Text(
-              'Food Lovers App',
+              'Welcome To Food Lovers App',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
