@@ -3,31 +3,64 @@ import 'package:flutter/material.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  Widget foodCard(String imageUrl, String title) {
+  Widget _statItem(IconData icon, String label, String value) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 16,
+              offset: Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Icon(icon, color: Colors.deepOrange, size: 28),
+            const SizedBox(height: 10),
+            Text(
+              value,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            Text(label, style: const TextStyle(color: Colors.black54)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _foodCard(String imageUrl, String title) {
     return Container(
-      width: 150,
-      margin: const EdgeInsets.only(right: 10),
+      width: 170,
+      margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: const [BoxShadow(blurRadius: 5, color: Colors.black12)],
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 18,
+            offset: Offset(0, 10),
+          ),
+        ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-            child: Image.network(
-              imageUrl,
-              height: 100,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            child: Image.asset(imageUrl, height: 120, fit: BoxFit.cover),
           ),
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
             child: Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -37,87 +70,112 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Colors.orange.shade50,
+      backgroundColor: const Color(0xFFFFF7EF),
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: const Text('Welcome to My Profile'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.deepOrange.shade700,
+        title: const Text('My Profile'),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CircleAvatar(
-                radius: 60,
-                backgroundImage: AssetImage('images/my_pic.jpg'),
-              ),
-
-              const SizedBox(height: 15),
-
-              const Text(
-                'Conroy Makhubu',
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              ),
-
-              const SizedBox(height: 10),
-
-              const Text(
-                'Passionate food lover and Flutter developer. '
-                'I enjoy discovering delicious meals and building amazing mobile applications.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.black54),
-              ),
-
-              const SizedBox(height: 25),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Column(
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(28),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 22,
+                      offset: Offset(0, 14),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(22),
+                  child: Column(
                     children: [
-                      Icon(Icons.favorite, color: Colors.red, size: 35),
-                      SizedBox(height: 5),
-                      Text('Likes'),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Good afternoon',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    color: Colors.deepOrange.shade700,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  'Conroy Makhubu',
+                                  style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                const Text(
+                                  'Passionate food lover and Flutter developer. Discovering delicious recipes and crafting delightful mobile experiences.',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black54,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          const CircleAvatar(
+                            radius: 42,
+                            backgroundImage: AssetImage(
+                              'assets/images/my_pic.jpg',
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _statItem(Icons.favorite, 'Likes', '1.2K'),
+                          const SizedBox(width: 12),
+                          _statItem(Icons.restaurant, 'Dishes', '24'),
+                          const SizedBox(width: 12),
+                          _statItem(Icons.star, 'Reviews', '5.0'),
+                        ],
+                      ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Icon(Icons.restaurant, color: Colors.orange, size: 35),
-                      SizedBox(height: 5),
-                      Text('Food'),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Icon(Icons.star, color: Colors.amber, size: 35),
-                      SizedBox(height: 5),
-                      Text('Reviews'),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 30),
-
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Favorite Foods',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
-
-              const SizedBox(height: 15),
-
+              const SizedBox(height: 28),
+              const Text(
+                'Favorite Foods',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 14),
               SizedBox(
-                height: 180,
+                height: 190,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
                   children: [
-                    foodCard('assets/images/pizza.jpg', 'Pizza'),
-                    foodCard('assets/images/burger.jpg', 'Burger'),
-                    foodCard('assets/images/sushi.jpg', 'Sushi'),
+                    _foodCard('assets/images/pizza.jpg', 'Pizza'),
+                    _foodCard('assets/images/burger.jpg', 'Burger'),
+                    _foodCard('assets/images/sushi.jpg', 'Sushi'),
+                    const SizedBox(width: 4),
                   ],
                 ),
               ),
