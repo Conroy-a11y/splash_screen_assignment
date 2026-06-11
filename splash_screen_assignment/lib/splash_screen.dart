@@ -10,35 +10,40 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
+
     Timer(const Duration(seconds: 3), () {
       setState(() {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const ProfileScreen()),
-        );
+        isLoading = false;
       });
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfileScreen()),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.shade100,
+      backgroundColor: const Color(0xff1B9C77),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.restaurant_menu, size: 100, color: Colors.green),
-            const SizedBox(height: 20),
-            const Text(
-              "Chef's Delight",
+          children: const [
+            Icon(Icons.restaurant_menu, size: 100, color: Colors.white),
+            SizedBox(height: 20),
+            Text(
+              'Food Recipe App',
               style: TextStyle(
-                fontSize: 28,
+                color: Colors.white,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: Colors.green,
               ),
             ),
           ],
