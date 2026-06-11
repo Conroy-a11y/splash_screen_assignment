@@ -3,154 +3,238 @@ import 'package:flutter/material.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+  Widget recipeCard({
+    required String title,
+    required String chef,
+    required String image,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      height: 180,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover),
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            colors: [Colors.black.withOpacity(0.7), Colors.transparent],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          ),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40),
-            // Profile Photo
-            const CircleAvatar(
-              radius: 60,
-              backgroundImage: AssetImage(
-                'assets/chef.png',
-              ), // placeholder image
-            ),
-            const SizedBox(height: 15),
-
-            // Name
-            const Text(
-              "Afuwape Abiodun",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
             ),
             const SizedBox(height: 5),
-            // Bio
-            const Text(
-              "Chef\nPrivate Chef\nPassionate about food and life 🍲🍗🍱",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-            const SizedBox(height: 20),
-
-            // Stats Row
+            Text(chef, style: const TextStyle(color: Colors.white70)),
+            const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                _StatCard(label: "Recipe", value: "4"),
-                _StatCard(label: "Followers", value: "2.5M"),
-                _StatCard(label: "Following", value: "259"),
+                Icon(Icons.access_time, color: Colors.white, size: 18),
+                SizedBox(width: 5),
+                Text("20 min", style: TextStyle(color: Colors.white)),
+                Spacer(),
+                Icon(Icons.bookmark_border, color: Colors.white),
               ],
-            ),
-            const SizedBox(height: 20),
-
-            // Tabs (mock UI)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Text(
-                  "Recipe",
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text("Videos", style: TextStyle(color: Colors.grey)),
-                Text("Tag", style: TextStyle(color: Colors.grey)),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            // Recipe Cards
-            _RecipeCard(
-              title: "Traditional spare ribs baked",
-              author: "Chef John",
-              rating: 4.0,
-              time: "20 min",
-              image: 'assets/ribs.png',
-            ),
-            _RecipeCard(
-              title: "Spice roasted chicken with flavored rice",
-              author: "Mark Kelvin",
-              rating: 4.0,
-              time: "20 min",
-              image: 'assets/chicken.png',
             ),
           ],
         ),
       ),
     );
   }
-}
-
-// Stats Widget
-class _StatCard extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const _StatCard({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        Text(label, style: const TextStyle(color: Colors.grey)),
-      ],
-    );
-  }
-}
-
-// Recipe Card Widget
-class _RecipeCard extends StatelessWidget {
-  final String title;
-  final String author;
-  final double rating;
-  final String time;
-  final String image;
-
-  const _RecipeCard({
-    required this.title,
-    required this.author,
-    required this.rating,
-    required this.time,
-    required this.image,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        children: [
-          Image.asset(image, width: 100, height: 100, fit: BoxFit.cover),
-          const SizedBox(width: 15),
-          Expanded(
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                // Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Profile",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-                Text("by $author"),
+
+                const SizedBox(height: 25),
+
+                // Profile Section
                 Row(
                   children: [
-                    const Icon(Icons.star, color: Colors.orange, size: 16),
-                    Text("$rating"),
-                    const SizedBox(width: 10),
-                    const Icon(Icons.timer, size: 16),
-                    Text(time),
+                    const CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(
+                        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+                      ),
+                    ),
+
+                    const SizedBox(width: 20),
+
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          Column(
+                            children: [
+                              Text(
+                                "4",
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text("Recipe"),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "2.5M",
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text("Followers"),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "259",
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text("Following"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
+                ),
+
+                const SizedBox(height: 20),
+
+                const Text(
+                  "Conroy Makhubu",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+
+                SizedBox(height: 5),
+
+                Text(
+                  "Chef",
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                ),
+
+                SizedBox(height: 15),
+
+                Text("Private Chef", style: TextStyle(fontSize: 16)),
+
+                SizedBox(height: 5),
+
+                Text(
+                  "Passionate about food and life 🍔🍕🍜",
+                  style: TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+
+                SizedBox(height: 5),
+
+                Text(
+                  "More...",
+                  style: TextStyle(
+                    color: Color(0xff1B9C77),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+
+                SizedBox(height: 25),
+
+                // Tabs
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff1B9C77),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Recipe",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      "Videos",
+                      style: TextStyle(
+                        color: Color(0xff1B9C77),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Text(
+                      "Tag",
+                      style: TextStyle(
+                        color: Color(0xff1B9C77),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 25),
+
+                // Recipe Cards
+                recipeCard(
+                  title: "Traditional spare ribs baked",
+                  chef: "By Chef John",
+                  image:
+                      "https://images.unsplash.com/photo-1544025162-d76694265947",
+                ),
+
+                recipeCard(
+                  title: "Spice roasted chicken with flavored rice",
+                  chef: "By Mark Kelvin",
+                  image:
+                      "https://images.unsplash.com/photo-1518492104633-130d0cc84637",
                 ),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
