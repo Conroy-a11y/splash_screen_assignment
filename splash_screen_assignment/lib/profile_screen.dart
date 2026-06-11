@@ -19,6 +19,7 @@ class ProfileScreen extends StatelessWidget {
               ), // placeholder image
             ),
             const SizedBox(height: 15),
+
             // Name
             const Text(
               "Afuwape Abiodun",

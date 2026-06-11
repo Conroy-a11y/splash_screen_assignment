@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Chef Profile App',
-      theme: ThemeData(primarySwatch: Colors.green),
+      title: 'Food Profile App',
+      theme: ThemeData(fontFamily: 'Arial'),
       home: const SplashScreen(),
     );
   }
