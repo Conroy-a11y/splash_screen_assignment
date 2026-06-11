@@ -35,10 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.restaurant_menu, size: 100, color: Colors.white),
-            SizedBox(height: 20),
-            Text(
+          children: [
+            Image.asset('images/Splash.png', width: 100, height: 100),
+            const SizedBox(height: 20),
+            const Text(
               'Food Recipe App',
               style: TextStyle(
                 color: Colors.white,

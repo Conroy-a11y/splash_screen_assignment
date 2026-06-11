@@ -87,9 +87,7 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-                      ),
+                      backgroundImage: AssetImage("assets/images/my_pic.jpg"),
                     ),
 
                     const SizedBox(width: 20),
@@ -221,15 +219,13 @@ class ProfileScreen extends StatelessWidget {
                 recipeCard(
                   title: "Traditional spare ribs baked",
                   chef: "By Chef John",
-                  image:
-                      "https://images.unsplash.com/photo-1544025162-d76694265947",
+                  image: "assets/images/ribs.png",
                 ),
 
                 recipeCard(
                   title: "Spice roasted chicken with flavored rice",
                   chef: "By Mark Kelvin",
-                  image:
-                      "https://images.unsplash.com/photo-1518492104633-130d0cc84637",
+                  image: "assets/images/chicken.png",
                 ),
               ],
             ),
