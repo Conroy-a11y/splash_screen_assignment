@@ -166,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(height: 5),
 
                 Text(
-                  "More...",
+                  "Besides a Dart and Flutter Developer.",
                   style: TextStyle(
                     color: Color(0xff1B9C77),
                     fontWeight: FontWeight.w500,
