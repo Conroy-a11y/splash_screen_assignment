@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final String name;
+  final String email;
+
+  const ProfileScreen({super.key, required this.name, required this.email});
 
   Widget recipeCard({
     required String title,
@@ -85,52 +88,33 @@ class ProfileScreen extends StatelessWidget {
                 // Profile Section
                 Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage("assets/images/my_pic.jpg"),
+                      backgroundImage: const NetworkImage(
+                        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+                      ),
                     ),
 
                     const SizedBox(width: 20),
 
                     Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Column(
-                            children: [
-                              Text(
-                                "4",
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text("Recipe"),
-                            ],
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            name,
+                            style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Text(
-                                "2.5M",
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text("Followers"),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "259",
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text("Following"),
-                            ],
+                          const SizedBox(height: 8),
+                          Text(
+                            email,
+                            style: const TextStyle(
+                              color: Colors.black54,
+                              fontSize: 16,
+                            ),
                           ),
                         ],
                       ),
@@ -140,16 +124,19 @@ class ProfileScreen extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                const Text(
-                  "Conroy Makhubu",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                Text(
+                  "Hello, $name",
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
 
-                SizedBox(height: 5),
+                const SizedBox(height: 8),
 
                 Text(
-                  "Chef",
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  "Email: $email",
+                  style: const TextStyle(color: Colors.grey, fontSize: 16),
                 ),
 
                 SizedBox(height: 15),

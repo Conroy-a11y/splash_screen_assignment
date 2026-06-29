@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food Profile App',
-      theme: ThemeData(fontFamily: 'Arial'),
+      theme: ThemeData(
+        fontFamily: 'Arial',
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: const SplashScreen(),
     );
   }
